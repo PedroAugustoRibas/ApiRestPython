@@ -1,19 +1,13 @@
 from flask import Flask
-from flask_restful import Resource,Api
+from flask_restful import Api
+from resources.hotel import Hotel, Hoteis
 
 app = Flask(__name__)
 api = Api(app)
 
-
-class Hostel(Resource):
-
-    def get(self):
-        return {'hosteis': 'meus hoteis'}
-
-
-api.add_resource(Hostel, '/hoteis')
+api.add_resource(Hoteis, '/hoteis')
+api.add_resource(Hotel, '/hoteis/<int:id_hotel>')
 
 if __name__ == '__main__':
     app.run(debug=True)
 
- # http://127.0.0.1:5000/

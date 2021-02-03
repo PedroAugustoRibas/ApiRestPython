@@ -14,12 +14,12 @@ class Hotel(Resource):
     params.add_argument('city')
 
     def get(self, id_hotel):
-        hotels = HotelModel.find_hotel(id_hotel)
-        if hotels:
-            return hotels.json()
-        return {'message': 'The table is empty'}, 400
+        hotel = HotelModel.find_hotel(id_hotel)
+        if hotel:
+            return hotel.json()
+        return {'message': 'Hotel not found'}, 400
 
-    def post(self, id_hotel):
+    def post(self, id_hotel=None):
         data = Hotel.params.parse_args()
         hotel = HotelModel(**data)
         hotel.save_hotel()

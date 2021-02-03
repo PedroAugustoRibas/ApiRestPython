@@ -13,8 +13,8 @@ def start_database():
     database.create_all()
 
 
-# api.add_resource(Hoteis, '/hoteis')
-api.add_resource(Hotel, '/hoteis')
+api.add_resource(Hoteis, '/hoteiss')
+api.add_resource(Hotel, '/hoteis/<int:id_hotel>')
 
 if __name__ == '__main__':
     from config.sql_alchemy import database

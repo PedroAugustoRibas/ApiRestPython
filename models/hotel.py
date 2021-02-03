@@ -6,7 +6,7 @@ class HotelModel(database.Model):
 
     id = database.Column(database.Integer, primary_key=True)
     name = database.Column(database.String(80))
-    starts = database.Column(database.Float(precision=1))
+    stars = database.Column(database.Float(precision=1))
     hotel_night = database.Column(database.Float(precision=2))
     city = database.Column(database.String(40))
 
@@ -35,7 +35,7 @@ class HotelModel(database.Model):
                 resultado
         """
 
-        hotel = cls.query.filter_by(id=5)
+        hotel = cls.query.filter_by(id=id_hotel).first()
         if hotel:
             return hotel
         return None

@@ -14,14 +14,12 @@ class Hotel(Resource):
     params.add_argument('city')
 
     def get(self, id_hotel):
-        hotels = HotelModel.get_all_hotels()
+        hotels = HotelModel.find_hotel(id_hotel)
         if hotels:
-            return {'message': 'The table is empty'}, 400
-        return hotels, 200
+            return hotels.json()
+        return {'message': 'The table is empty'}, 400
 
-    def post(self):
-        # if HotelModel.find_hotel(id_hotel):
-        #     return {'message': 'Hotel id "{}" already exists.'.format(id_hotel)}, 400
+    def post(self, id_hotel):
         data = Hotel.params.parse_args()
         hotel = HotelModel(**data)
         hotel.save_hotel()

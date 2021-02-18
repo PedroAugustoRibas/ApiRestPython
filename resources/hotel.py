@@ -16,17 +16,26 @@ class Hotel(Resource):
     def get(self, id_hotel):
         hotel = HotelModel.find_hotel(id_hotel)
         if hotel:
-            return hotel.json()
+            return hotel.json(), 200
+
         return {'message': 'Hotel not found'}, 400
 
-    def post(self, id_hotel=None):
+    def post(self):
         data = Hotel.params.parse_args()
         hotel = HotelModel(**data)
         hotel.save_hotel()
         return hotel.json(), 201
 
     def put(self, id_hotel):
-        pass
+        data = Hotel.params.parse_args()
+        hotel_found = HotelModel.find_hotel(id_hotel)
+        if hotel_found:
+            hotel_found.update_hotel(**data)
+            hotel_found.save_hotel()
+            return hotel_found.json(), 200
+        hotel = HotelModel(**data)
+        hotel.save_hotel()
+        return hotel.json(), 201
 
     def delete(self, id_hotel):
         pass

@@ -30,7 +30,7 @@ class HotelModel(database.Model):
     def find_hotel(cls, id_hotel):
         """Busca pelo hotel na tabela hotels
            Args:
-               id_hotel (int): dados que devem ser inseridos na tabela.
+               id_hotel (Integer): dados que devem ser inseridos na tabela.
            Returns:
                 resultado
         """
@@ -39,6 +39,21 @@ class HotelModel(database.Model):
         if hotel:
             return hotel
         return None
+
+    def update_hotel(self, name, stars, hotel_night, city):
+        """Atualiza os dados do hotel
+           Args:
+               name (String): nome do hotel
+               stars (Float): estrelas do hotel
+               hotel_night (Float): valor da estadia do hotel
+               city (String): Cidade que o hotel pertence
+           Returns:
+                bool
+        """
+        self.name = name
+        self.stars = stars
+        self.hotel_night = hotel_night
+        self.city = city
 
     @classmethod
     def get_all_hotels(cls):

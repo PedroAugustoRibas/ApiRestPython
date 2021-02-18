@@ -14,7 +14,7 @@ def start_database():
 
 
 api.add_resource(Hoteis, '/hoteiss')
-api.add_resource(Hotel, '/hoteis/<int:id_hotel>')
+api.add_resource(Hotel, '/hoteis', '/hoteis/<int:id_hotel>')
 
 if __name__ == '__main__':
     from config.sql_alchemy import database

@@ -1,4 +1,4 @@
-#!/home/pedro/git_pessoal/ApiRestPython/ambvir/bin/python3.8
+#!/home/pedro/git_pessoal/ApiRestPython/ambvir/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

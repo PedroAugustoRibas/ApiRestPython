@@ -1,19 +1,20 @@
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
+from flask_apispec.views import MethodResource
+from flask_apispec import marshal_with, doc, use_kwargs
+from config.hotel_schema import HotelResponseSchema, HotelRequestSchema
 
-class Hoteis(Resource):
-    def get(self):
-        return "hotels"
 
-
-class Hotel(Resource):
+class Hotel(MethodResource, Resource):
     params = reqparse.RequestParser()
     params.add_argument('name')
     params.add_argument('stars')
     params.add_argument('hotel_night')
     params.add_argument('city')
 
-    def get(self, id_hotel):
+    # @doc(description='My First GET Awesome API.', tags=['Awesome'])
+    # @marshal_with(HotelResponseSchema)  # marshalling
+    def get(self, id_hotel=None):
         hotel = HotelModel.find_hotel(id_hotel)
         if hotel:
             return hotel.json(), 200
@@ -38,6 +39,11 @@ class Hotel(Resource):
         return hotel.json(), 201
 
     def delete(self, id_hotel):
-        pass
+        hotel = HotelModel.find_hotel(id_hotel)
+        if hotel:
+            hotel.delete_hotel()
+            return {'message': 'Hotel deleted'}, 200
+
+        return {'message': 'Hotel not found'}, 404
 
 

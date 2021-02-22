@@ -75,5 +75,11 @@ class HotelModel(database.Model):
         database.session.add(self)
         database.session.commit()
 
+    def delete_hotel(self):
+        """Apaga o registro  na tabela de hotels"""
+
+        database.session.delete(self)
+        database.session.commit()
+
 
 

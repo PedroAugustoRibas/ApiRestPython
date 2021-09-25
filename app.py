@@ -1,10 +1,8 @@
 from flask import Flask
 from flask_restful import Api
 from resources.hotel import Hotel
-from flasgger import Swagger
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
-from flask_apispec.extension import FlaskApiSpec
 
 
 app = Flask(__name__)
@@ -22,7 +20,6 @@ app.config.update({
     'APISPEC_SWAGGER_UI_URL': '/swagger-ui/'  # URI to access UI of API Doc
 })
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
-docs = FlaskApiSpec(app)
 api = Api(app)
 
 
@@ -32,7 +29,6 @@ def start_database():
 
 
 api.add_resource(Hotel, '/hoteis', '/hotel/<int:id_hotel>')
-docs.register(Hotel)
 
 if __name__ == '__main__':
     from config.sql_alchemy import database

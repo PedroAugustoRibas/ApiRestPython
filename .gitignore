@@ -14,3 +14,7 @@
 .ambvir/
 .ambvir/**/
 .ambvir/*/*
+.venv/*
+.venv/
+.venv/**/
+.venv/*/*

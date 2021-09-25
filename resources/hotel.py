@@ -1,11 +1,9 @@
 from flask_restful import Resource, reqparse
 from models.hotel import HotelModel
-from flask_apispec.views import MethodResource
-from flask_apispec import marshal_with, doc, use_kwargs
 from config.hotel_schema import HotelResponseSchema, HotelRequestSchema
 
 
-class Hotel(MethodResource, Resource):
+class Hotel(Resource):
     params = reqparse.RequestParser()
     params.add_argument('name')
     params.add_argument('stars')
